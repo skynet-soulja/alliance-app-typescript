@@ -160,7 +160,7 @@ function App() {
           <Selects dispatch={dispatch} invoice={invoice} />
 
           <Form.Row>
-            <Col id="btn-ctrl">
+            <Col className="button-group">
               <Button variant="primary" type="button" onClick={() => dispatch({ type: 'ADD-INVOICE-ITEM' })}>
                 Add Invoice Item
               </Button>
