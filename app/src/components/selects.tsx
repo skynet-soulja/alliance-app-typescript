@@ -5,8 +5,17 @@ import { jobsites, jobsiteMap, modelMap, elevationMap, ccMap, optionMap, Action,
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
-const Selects: React.FC<{ dispatch: React.Dispatch<Action>; invoice: Invoice }> = ({ dispatch, invoice }) => {
+const Selects: React.FC<{
+  dispatch: React.Dispatch<Action>
+  invoice: Invoice
+}> = ({ dispatch, invoice }) => {
   const selectedJobsite = jobsites.find((jobsite) => jobsite.name === invoice.jobsiteName) || jobsites[0]
+
+  // Ensures model and elevation change when user changes jobsites
+  React.useEffect(() => {
+    dispatch({ type: 'SET-MODEL-NAME', value: modelMap[selectedJobsite.model[0]] })
+    dispatch({ type: 'SET-ELEVATION-NAME', value: elevationMap[selectedJobsite.elevation[0]] })
+  }, [selectedJobsite])
 
   return (
     <>
@@ -17,7 +26,12 @@ const Selects: React.FC<{ dispatch: React.Dispatch<Action>; invoice: Invoice }> 
           <Form.Control
             name="jobsite"
             as="select"
-            onChange={(event) => dispatch({ type: 'SET-JOBSITE-NAME', value: jobsiteMap[event.target.value] })}
+            onChange={(event) =>
+              dispatch({
+                type: 'SET-JOBSITE-NAME',
+                value: jobsiteMap[event.target.value],
+              })
+            }
           >
             {jobsites.map((jobsite) => {
               return (
@@ -37,7 +51,12 @@ const Selects: React.FC<{ dispatch: React.Dispatch<Action>; invoice: Invoice }> 
           <Form.Control
             name="model"
             as="select"
-            onChange={(event) => dispatch({ type: 'SET-MODEL-NAME', value: modelMap[event.target.value] })}
+            onChange={(event) =>
+              dispatch({
+                type: 'SET-MODEL-NAME',
+                value: modelMap[event.target.value],
+              })
+            }
           >
             {selectedJobsite.model.map((id) => (
               <option key={`model__${id}`} value={id}>
@@ -53,7 +72,12 @@ const Selects: React.FC<{ dispatch: React.Dispatch<Action>; invoice: Invoice }> 
           <Form.Control
             name="elevation"
             as="select"
-            onChange={(event) => dispatch({ type: 'SET-ELEVATION-NAME', value: elevationMap[event.target.value] })}
+            onChange={(event) =>
+              dispatch({
+                type: 'SET-ELEVATION-NAME',
+                value: elevationMap[event.target.value],
+              })
+            }
           >
             {selectedJobsite.elevation.map((id) => (
               <option key={`elevation__${id}`} value={id}>
