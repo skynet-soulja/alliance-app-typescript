@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm server.js && rm createPDF.js",
-    "build:server": "tsc tsconfig.server.json",
+    "build:server": "tsc",
     "build:app": "cd app && yarn install && yarn build",
     "build": "yarn build:app && yarn build:server",
     "develop": "ts-node-dev server.ts",
