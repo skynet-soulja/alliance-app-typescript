@@ -6,9 +6,9 @@
   "main": "server.js",
   "scripts": {
     "clean": "rm server.js && rm createPDF.js",
-    "develop": "ts-node-dev server.ts",
-    "build:server": "tsc",
+    "develop": "yarn build:app && ts-node-dev server.ts",
     "build:app": "cd app && yarn install && yarn build",
+    "build:server": "tsc",
     "build": "yarn build:app && yarn build:server",
     "postinstall": "yarn build"
   },
