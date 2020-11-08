@@ -9,8 +9,9 @@
     "build:server": "tsc tsconfig.server.json",
     "build:app": "cd app && yarn build",
     "build": "yarn build:app && yarn build:server",
+    "install:app": "cd app && yarn install",
     "develop": "ts-node-dev server.ts",
-    "postinstall": "yarn build && node server.js"
+    "postinstall": "yarn build && yarn build && node server.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.8",
