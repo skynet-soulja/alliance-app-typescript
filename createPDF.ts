@@ -116,7 +116,7 @@ const createHTMLFile = (invoice: Invoice) => {
 const createPDF = async (invoice: Invoice) => {
   createHTMLFile(invoice)
 
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
   const page = await browser.newPage()
   await page.goto(htmlPath)
   const pdf = await page.pdf({ preferCSSPageSize: true })
