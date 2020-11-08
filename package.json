@@ -1,43 +1,36 @@
 {
   "name": "alliance-app-typescript",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.0",
-    "typescript": "^4.0.3",
-    "web-vitals": "^0.2.4"
-  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "skynet-soulja",
+  "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "clean": "rm server.js && rm createPDF.js",
+    "build:server": "tsc tsconfig.server.json",
+    "build:app": "cd app && yarn build",
+    "build": "yarn build:app && yarn build:server",
+    "develop": "ts-node-dev server.ts",
+    "postinstall": "yarn build && node server.js"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "devDependencies": {
+    "@types/express": "^4.17.8",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^14.14.6",
+    "@types/nodemailer": "^6.4.0",
+    "@types/puppeteer": "^5.4.0",
+    "nodemon": "^2.0.6",
+    "ts-node-dev": "^1.0.0",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.5"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemailer": "^6.4.14",
+    "puppeteer": "^5.4.1"
+  },
+  "engines": {
+    "node": "12.18.2",
+    "yarn": "1.22.4"
   }
 }
