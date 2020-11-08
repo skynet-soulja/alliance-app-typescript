@@ -1,10 +1,10 @@
-import fs from "fs";
-import path from "path";
-import puppeteer from "puppeteer";
+import fs from 'fs'
+import path from 'path'
+import puppeteer from 'puppeteer'
 
-import { Invoice } from "./app/src/config";
+import { Invoice } from './app/src/config'
 
-const htmlPath = path.resolve("./invoice.html");
+const htmlPath = path.resolve('./invoice.html')
 
 const createHTMLFile = (invoice: Invoice) => {
   const {
@@ -16,7 +16,7 @@ const createHTMLFile = (invoice: Invoice) => {
     lotNumber,
     totalFormatted,
     invoiceItems,
-  } = invoice;
+  } = invoice
 
   const tableRows = invoiceItems
     .map((item) => {
@@ -26,9 +26,9 @@ const createHTMLFile = (invoice: Invoice) => {
                 <td>${item.description}</td>
                 <td>${item.priceFormatted}</td>
             </tr>
-        `;
+        `
     })
-    .join("");
+    .join('')
 
   const htmlTemplate = `
       <!DOCTYPE html>
@@ -38,7 +38,7 @@ const createHTMLFile = (invoice: Invoice) => {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Alliance Builders Invoice</title>
-          <link rel="stylesheet" type="text/css" href="./frontend/src/styles/invoice.css">      
+          <link rel="stylesheet" type="text/css" href="./app/src/styles/invoice.css">      
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
           <style>
               .invoice {
@@ -104,25 +104,25 @@ const createHTMLFile = (invoice: Invoice) => {
       </body>
       
       </html>
-    `;
+    `
 
   if (fs.existsSync(htmlPath)) {
-    fs.unlinkSync(htmlPath);
+    fs.unlinkSync(htmlPath)
   }
 
-  fs.writeFileSync(htmlPath, htmlTemplate);
-};
+  fs.writeFileSync(htmlPath, htmlTemplate)
+}
 
 const createPDF = async (invoice: Invoice) => {
-  createHTMLFile(invoice);
+  createHTMLFile(invoice)
 
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto(htmlPath);
-  const pdf = await page.pdf({ preferCSSPageSize: true });
-  await browser.close();
+  const browser = await puppeteer.launch()
+  const page = await browser.newPage()
+  await page.goto(htmlPath)
+  const pdf = await page.pdf({ preferCSSPageSize: true })
+  await browser.close()
 
-  return pdf;
-};
+  return pdf
+}
 
-export default createPDF;
+export default createPDF
