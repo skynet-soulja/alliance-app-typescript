@@ -5,8 +5,10 @@
     "allowJs": true,
     "noEmit": true,
     "strict": true,
+    "skipLibCheck": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
     "resolveJsonModule": true
-  }
+  },
+  "exclude": ["app", "node_modules"]
 }
