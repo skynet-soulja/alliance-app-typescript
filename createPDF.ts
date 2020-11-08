@@ -1,12 +1,8 @@
-import fs from 'fs'
-import path from 'path'
 import puppeteer from 'puppeteer'
 
 import { Invoice } from './app/src/config'
 
-const htmlPath = path.resolve('./invoice.html')
-
-const createHTMLFile = (invoice: Invoice) => {
+const createHTML = (invoice: Invoice) => {
   const {
     jobsiteName,
     modelName,
@@ -37,12 +33,59 @@ const createHTMLFile = (invoice: Invoice) => {
       <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Alliance Builders Invoice</title>
-          <link rel="stylesheet" type="text/css" href="./app/src/styles/invoice.css">      
+          <title>Alliance Builders Invoice</title>    
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
           <style>
-              .invoice {
-                  padding-top: 4rem;
+            .invoice {
+                margin: 0;
+                padding: 0;
+                font-size: 12px;
+                background-color: #fff;
+                letter-spacing: 0.07rem;
+              }
+              
+              .invoice h6 {
+                text-transform: uppercase;
+                color: rgb(122, 121, 121);
+                font-size: 0.9rem;
+                font-weight: 700;
+              }
+              
+              .invoice b {
+                text-transform: none;
+              }
+              
+              .invoice p {
+                margin: 0 0 1rem 0;
+              }
+              
+              .invoice-title {
+                font-size: 3.5rem;
+                margin-bottom: 1rem;
+                letter-spacing: -0.03em;
+              }
+              
+              .invoice-tophead {
+                display: flex;
+                justify-content: left;
+                margin-bottom: 3rem;
+              }
+              
+              .invoice-tophead > div:first-child {
+                margin-right: 3rem;
+              }
+              
+              .invoice-info {
+                display: flex;
+                margin-bottom: 3rem;
+              }
+              
+              .invoice-info-split {
+                flex-basis: 50%;
+              }
+              
+              .invoice-footer {
+                margin-top: 2rem;
               }
           </style>
       </head>
@@ -106,20 +149,24 @@ const createHTMLFile = (invoice: Invoice) => {
       </html>
     `
 
-  if (fs.existsSync(htmlPath)) {
-    fs.unlinkSync(htmlPath)
-  }
-
-  fs.writeFileSync(htmlPath, htmlTemplate)
+  return htmlTemplate
 }
 
 const createPDF = async (invoice: Invoice) => {
-  createHTMLFile(invoice)
+  const html = createHTML(invoice)
 
   const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
   const page = await browser.newPage()
-  await page.goto(htmlPath)
-  const pdf = await page.pdf({ preferCSSPageSize: true })
+  await page.setContent(html)
+  const pdf = await page.pdf({
+    preferCSSPageSize: true,
+    margin: {
+      top: '60px',
+      left: '40px',
+      right: '40px',
+      bottom: '40px',
+    },
+  })
   await browser.close()
 
   return pdf
