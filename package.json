@@ -7,10 +7,7 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "develop": "ts-node-dev server.ts",
-    "install:app": "cd app && yarn install",
-    "build": "cd app && yarn build",
-    "postinstall": "yarn install:app && yarn build",
-    "start": "ts-node server"
+    "postinstall": "ts-node server.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.8",
