@@ -1,16 +1,16 @@
 {
   "name": "alliance-app-typescript",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "skynet-soulja",
   "license": "MIT",
+  "main": "server.js",
   "scripts": {
     "clean": "rm server.js && rm createPDF.js",
+    "develop": "ts-node-dev server.ts",
     "build:server": "tsc",
     "build:app": "cd app && yarn install && yarn build",
     "build": "yarn build:app && yarn build:server",
-    "develop": "ts-node-dev server.ts",
-    "postinstall": "yarn build && node server.js"
+    "postinstall": "yarn build"
   },
   "devDependencies": {
     "@types/express": "^4.17.8",
