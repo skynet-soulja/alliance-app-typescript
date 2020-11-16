@@ -107,7 +107,7 @@ const Selects: React.FC<{
           <Form.Control name="option" as="select">
             {selectedJobsite.option.map((id) => (
               <option key={`option__${id}`} value={id}>
-                {optionMap[id]}
+                {`${id} - ${optionMap[id]}`}
               </option>
             ))}
           </Form.Control>
@@ -118,74 +118,3 @@ const Selects: React.FC<{
 }
 
 export default Selects
-
-// import React from 'react'
-// import data from '../data.json'
-
-// import Form from 'react-bootstrap/Form'
-// import Col from 'react-bootstrap/Col'
-
-// const DependantInputs: React.FC<{ jobsite: IJobsite }> = ({ jobsite }) => {
-//   const modelMap: IMap = data.modelMap
-//   const elevationMap: IMap = data.elevationMap
-//   const ccMap: IMap = data.ccMap
-//   const optionMap: IMap = data.optionMap
-
-//   return (
-//     <>
-//       <Form.Row>
-//         <Form.Group xs="12" md="3" as={Col}>
-//           <Form.Label>Model</Form.Label>
-
-//           <Form.Control name="model" as="select">
-//             {jobsite.model.map((n: number) => (
-//               <option key={`model__${n}`} value={n}>
-//                 {modelMap[n]}
-//               </option>
-//             ))}
-//           </Form.Control>
-//         </Form.Group>
-
-//         <Form.Group xs="12" md="3" as={Col}>
-//           <Form.Label>Elevation</Form.Label>
-
-//           <Form.Control name="elevation" as="select">
-//             {jobsite.elevation.map((n: number) => (
-//               <option key={`elevation__${n}`} value={n}>
-//                 {elevationMap[n]}
-//               </option>
-//             ))}
-//           </Form.Control>
-//         </Form.Group>
-//       </Form.Row>
-
-//       <Form.Row>
-//         <Form.Group xs="12" md="3" as={Col}>
-//           <Form.Label>CC Description</Form.Label>
-
-//           <Form.Control name="cc" as="select">
-//             {jobsite.cc.map((n: number) => (
-//               <option key={`cc__${n}`} value={n}>
-//                 {ccMap[n]}
-//               </option>
-//             ))}
-//           </Form.Control>
-//         </Form.Group>
-
-//         <Form.Group xs="12" md="3" as={Col}>
-//           <Form.Label>Option</Form.Label>
-
-//           <Form.Control name="option" as="select">
-//             {jobsite.option.map((n: number) => (
-//               <option key={`option__${n}`} value={n}>
-//                 {optionMap[n]}
-//               </option>
-//             ))}
-//           </Form.Control>
-//         </Form.Group>
-//       </Form.Row>
-//     </>
-//   )
-// }
-
-// export default DependantInputs
