@@ -58,6 +58,7 @@ const reducer = (invoice: Invoice, action: Action) => {
       const optionId = (document.querySelector('select[name=option]') as HTMLInputElement).value
 
       const priceIdCollection = [jobsiteId, ccId, modelId, elevationId, optionId]
+      const ccIdWithDescription = ccId === '4304' ? `${ccId} - First Draw` : `${ccId} - Second Draw`
 
       const price = (() => {
         for (const key in priceMap) {
@@ -75,7 +76,7 @@ const reducer = (invoice: Invoice, action: Action) => {
       const newInvoiceItems = [
         ...invoice.invoiceItems,
         {
-          option: optionId === '0' ? ccId : optionId,
+          option: optionId === '0' ? ccIdWithDescription : optionId,
           description: optionMap[optionId],
           price: price,
           priceFormatted: isNaN(parseInt(price)) ? price : `$${numberWithCommas(parseInt(price))}`,
