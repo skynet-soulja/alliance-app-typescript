@@ -150,6 +150,15 @@ function App() {
         <h1 className="page-title">Alliance Builders</h1>
       </header>
 
+      <a
+        className="btn btn-primary"
+        href="alliance_builders_invoice.pdf"
+        target="_blank"
+        style={{ marginBottom: '20px' }}
+      >
+        Custom PDF
+      </a>
+
       <main>
         <ModalComponent showModal={showModal} setShowModal={setShowModal} invoice={invoice} sendEmail={sendEmail} />
 
