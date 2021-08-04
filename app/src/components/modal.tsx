@@ -91,6 +91,7 @@ const ModalComponent: React.FC<{
           </Table>
 
           <div className="invoice-footer">Alliance Builders Inc.</div>
+          <em>Robert Martin</em>
         </div>
       </Modal.Body>
 

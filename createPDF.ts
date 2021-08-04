@@ -3,16 +3,8 @@ import puppeteer from 'puppeteer'
 import { Invoice } from './app/src/config'
 
 const createHTML = (invoice: Invoice) => {
-  const {
-    jobsiteName,
-    modelName,
-    elevationName,
-    today,
-    invoiceNumber,
-    lotNumber,
-    totalFormatted,
-    invoiceItems,
-  } = invoice
+  const { jobsiteName, modelName, elevationName, today, invoiceNumber, lotNumber, totalFormatted, invoiceItems } =
+    invoice
 
   const tableRows = invoiceItems
     .map((item) => {
@@ -142,6 +134,7 @@ const createHTML = (invoice: Invoice) => {
               </div>
       
               <div class="invoice-footer">Alliance Builders Inc.</div>
+              <em>Robert Martin</em>
           </div>
       
       </body>
