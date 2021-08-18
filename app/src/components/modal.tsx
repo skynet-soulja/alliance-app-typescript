@@ -92,6 +92,7 @@ const ModalComponent: React.FC<{
 
           <div className="invoice-footer">Alliance Builders Inc.</div>
           <em>Robert Martin</em>
+          <span style={{ display: 'block' }}>electronic signature</span>
         </div>
       </Modal.Body>
 
