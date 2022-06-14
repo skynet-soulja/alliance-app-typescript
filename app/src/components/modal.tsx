@@ -20,7 +20,7 @@ const ModalComponent: React.FC<{
       </Modal.Header>
 
       <Modal.Body>
-        <div className="invoice">
+        <div className="invoice" id="invoice">
           <h1 className="invoice-title">Invoice</h1>
 
           <div className="invoice-tophead">
@@ -62,7 +62,7 @@ const ModalComponent: React.FC<{
             </div>
           </div>
 
-          <Table className="invoice-table" striped bordered hover responsive size="sm">
+          <Table className="invoice-table" bordered hover responsive size="sm">
             <thead>
               <tr>
                 <th>Option</th>
@@ -107,7 +107,7 @@ const ModalComponent: React.FC<{
         </Button>
 
         <Button variant="primary" onClick={sendEmail}>
-          Send Email
+          Creat PDF
         </Button>
       </Modal.Footer>
     </Modal>

@@ -23,6 +23,8 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
+import { createPDF } from './createPDF'
+
 const initialState: Invoice = {
   jobsiteName: jobsites[0].name,
   modelName: modelMap[jobsites[0].model[0]],
@@ -123,19 +125,21 @@ function App() {
     try {
       setLoading(true)
 
-      const response = await fetch('/api/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(invoice),
-      })
+      // const response = await fetch('/api/send', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(invoice),
+      // })
+
+      createPDF(invoice)
 
       setLoading(false)
 
-      if (!response.ok) {
-        throw new Error()
-      }
+      // if (!response.ok) {
+      //   throw new Error()
+      // }
 
-      alert('Email Sent Successfully!')
+      // alert('Email Sent Successfully!')
       setShowModal(false)
     } catch (error) {
       setLoading(false)
