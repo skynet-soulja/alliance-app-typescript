@@ -149,7 +149,7 @@ const createHTML = (invoice: Invoice) => {
 const createPDF = async (invoice: Invoice) => {
   const html = createHTML(invoice)
 
-  const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
+  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.setContent(html)
   const pdf = await page.pdf({
