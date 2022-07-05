@@ -105,11 +105,21 @@ const Selects: React.FC<{
           <Form.Label>Option</Form.Label>
 
           <Form.Control name="option" as="select">
-            {selectedJobsite.option.map((id) => (
-              <option key={`option__${id}`} value={id}>
-                {`${id} - ${optionMap[id]}`}
-              </option>
-            ))}
+            {selectedJobsite.option
+              .sort((a, b) => {
+                if (a < b) {
+                  return -1
+                } else if (a > b) {
+                  return 1
+                } else {
+                  return 0
+                }
+              })
+              .map((id) => (
+                <option key={`option__${id}`} value={id}>
+                  {`${id} - ${optionMap[id]}`}
+                </option>
+              ))}
           </Form.Control>
         </Form.Group>
       </Form.Row>
