@@ -99,7 +99,7 @@ const createHTML = (invoice: Invoice) => {
               <div class="invoice-info">
                   <div class="invoice-info-split">
                       <h6>Billed To</h6>
-                      <p>Toll Integrated Systems</p>
+                      <p>Toll Integrated Systems <br> 449 South Pennsylvania Avenue <br> Morrisville, PA 19067</p>
                       <h6>For</h6>
                       <p>${jobsiteName} # ${lotNumber}</p>
                       <h6>Model/Elevation</h6>
