@@ -38,7 +38,7 @@ const ModalComponent: React.FC<{
           <div className="invoice-info">
             <div className="invoice-info-split">
               <h6>Billed To</h6>
-              <p>Toll Integrated Systems</p>
+              <p>Toll Integrated Systems <br/> 449 South Pennsylvania Avenue <br/> Morrisville, PA 19067</p>
 
               <h6>For</h6>
               <p>
@@ -91,7 +91,7 @@ const ModalComponent: React.FC<{
           </Table>
 
           <div className="invoice-footer">Alliance Builders Inc.</div>
-          <em>Robert Martin</em>
+          <p>Robert Martin</p>
           <span style={{ display: 'block' }}>electronic signature</span>
         </div>
       </Modal.Body>
