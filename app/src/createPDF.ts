@@ -1,5 +1,6 @@
 import { jsPDF } from 'jspdf'
 import { Invoice } from './config'
+const html2pdf = require('html2pdf.js');
 
 const createHTML = (invoice: Invoice) => {
   const { jobsiteName, modelName, elevationName, today, invoiceNumber, lotNumber, totalFormatted, invoiceItems } =
@@ -30,7 +31,6 @@ const createHTML = (invoice: Invoice) => {
             .invoice {
                 margin: 0;
                 padding: 0;
-                font-size: 12px;
                 background-color: #fff;
                 letter-spacing: 0.07rem;
               }
@@ -148,19 +148,27 @@ const createHTML = (invoice: Invoice) => {
 export const createPDF = async (invoice: Invoice) => {
   const html = createHTML(invoice)
 
-  const doc = new jsPDF('l', 'mm', [1200, 1210])
+  // const doc = new jsPDF()
 
   const invoiceEl = document.getElementById('invoice')
 
-  console.log(invoiceEl)
-
   if (invoiceEl) {
-    doc.html(invoiceEl, {
-      callback: (doc) => {
-        doc.save(`alliance_builders_invoice_#${invoice.invoiceNumber}.pdf`)
-      },
-      x: 40,
-      y: 60,
-    })
+    // doc.html(invoiceEl, {
+    //   callback: (doc) => {
+    //     doc.save(`alliance_builders_invoice_#${invoice.invoiceNumber}.pdf`)
+    //   },
+    //   x: 40,
+    //   y: 60,
+    // })
+    var opt = {
+      margin: 1,
+      filename: `alliance_builders_invoice_#${invoice.invoiceNumber}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    // New Promise-based usage:
+    html2pdf().from(invoiceEl).set(opt).save();
   }
 }
